@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
-interface IButtonProps {
+export interface IButtonStyleProps {
   width?: string;
   height?: string;
 }
 
-export const ButtonStyle = styled.button<IButtonProps>`
+export const ButtonStyle = styled.button<IButtonStyleProps>`
   width: ${props => props.width || "40%"};
   height: ${props => props.height || "40px"};
   background-color: ${({ theme }) => theme.colors.defaultGreen};
