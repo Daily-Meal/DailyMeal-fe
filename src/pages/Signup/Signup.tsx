@@ -4,7 +4,7 @@ import * as S from "./Signup.style";
 
 export default function Signup() {
   return (
-    <S.LoginStyle>
+    <S.SignupStyle>
       <form>
         <InputBox label="아이디" type="email" placeholder="abcd@email.com" />
         <div>
@@ -19,7 +19,7 @@ export default function Signup() {
 
       <InputBox label="비밀번호" type="password" placeholder="password" />
       <InputBox label="비밀번호 확인" type="password" placeholder="password" />
-      <Button title="로그인" />
-    </S.LoginStyle>
+      <Button title="회원가입" />
+    </S.SignupStyle>
   );
 }
