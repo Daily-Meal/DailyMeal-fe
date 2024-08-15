@@ -1,16 +1,27 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-export const LoginStyle = styled.div`
+export const SignupStyle = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   height: 100vh;
   justify-content: center;
   gap: 30px;
-  p {
-    text-align: center;
-    line-height: 25px;
+  width: 100%;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    gap: 4px;
+
+    div {
+      display: flex;
+      width: 40%;
+      justify-content: flex-start;
+    }
   }
 `;
 

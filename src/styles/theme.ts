@@ -5,9 +5,12 @@ export interface Colors {
   defaultGray: string;
   overlayGray: string;
   lightGray: string;
+  linkGray: string;
   backgroundGray: string;
+  textGray: string;
   backgroundGreen: string;
   textGreen: string;
+  linkGreen: string;
 }
 
 const theme: DefaultTheme = {
@@ -16,9 +19,12 @@ const theme: DefaultTheme = {
     defaultGray: "#D6D6D6",
     overlayGray: "#000000",
     lightGray: "#82867E",
-    backgroundGray: "#F6F6F6",
+    linkGray: "#F6F6F6",
+    textGray: "#A9A9A9",
+    backgroundGray: "#FBFBFB",
     backgroundGreen: "#E6EFDA",
     textGreen: "#5E8B20",
+    linkGreen: "#77BC19",
   },
   fonts: {
     main: "'Roboto', sans-serif",
