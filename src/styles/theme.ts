@@ -4,6 +4,8 @@ export interface Colors {
   defaultGreen: string;
   defaultGray: string;
   overlayGray: string;
+  lightGray: string;
+  backgroundGray: string;
   backgroundGreen: string;
   textGreen: string;
 }
@@ -13,6 +15,8 @@ const theme: DefaultTheme = {
     defaultGreen: "#88C533",
     defaultGray: "#D6D6D6",
     overlayGray: "#000000",
+    lightGray: "#82867E",
+    backgroundGray: "#F6F6F6",
     backgroundGreen: "#E6EFDA",
     textGreen: "#5E8B20",
   },

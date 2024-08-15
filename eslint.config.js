@@ -11,7 +11,7 @@ export default {
     tseslint.configs.recommended,
     "plugin:prettier/recommended",
   ],
-  files: ["**/*.{ts,tsx}"],
+  files: ["**/*.{js,jsx,ts,tsx}"],
   ignores: ["dist"],
   languageOptions: {
     ecmaVersion: 2020,
