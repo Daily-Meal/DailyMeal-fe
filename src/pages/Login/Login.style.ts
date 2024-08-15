@@ -5,6 +5,7 @@ export const LoginStyle = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
   height: 100vh;
   justify-content: center;
   gap: 30px;

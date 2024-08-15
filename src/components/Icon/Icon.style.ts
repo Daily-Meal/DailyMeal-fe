@@ -1,13 +1,8 @@
 import styled from "styled-components";
+import { inherits } from "util";
 
 export const IconContainer = styled.img`
-  width: ${props => props.width};
-  height: ${props => props.width};
-  color: white;
-  fill: white;
-  svg {
-    color: white;
-    fill: white;
-  }
+  width: ${props => props.width || "inherit"};
+  height: ${props => props.height || "inherit"};
   cursor: pointer;
 `;
