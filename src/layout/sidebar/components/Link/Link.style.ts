@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const LinkeStyle = styled.div`
+export const LinkStyle = styled.div`
   margin-top: 60px;
   display: flex;
   flex-direction: column;
@@ -43,7 +43,6 @@ export const LinkBox = styled.ul`
 
   .item.active {
     background-color: ${({ theme }) => theme.colors.defaultGreen};
-    /* color: ${({ theme }) => theme.colors.defaultGreen}; */
     color: white;
   }
 

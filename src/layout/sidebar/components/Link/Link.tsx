@@ -23,7 +23,7 @@ export default function Link() {
   const location = useLocation();
   console.log(location.pathname);
   return (
-    <S.LinkeStyle>
+    <S.LinkStyle>
       <S.LinkBox>
         <div className="link">
           {LINK_CONTENTS.map(link => {
@@ -47,7 +47,7 @@ export default function Link() {
           active={location.pathname === "/login"}
         />
       </S.LinkBox>
-    </S.LinkeStyle>
+    </S.LinkStyle>
   );
 }
 
