@@ -1,31 +1,70 @@
+import { Link as RouterLink, useLocation } from "react-router-dom";
 import Icon from "@/components/Icon";
 import * as S from "./Link.style";
-import { Fragment } from "react/jsx-runtime";
-import React from "react";
+
+interface ILinkItemProps {
+  to: string;
+  name: string;
+  title: string;
+  className?: string;
+  active: boolean;
+}
+
+const LinkItem = ({ to, name, title, className, active }: ILinkItemProps) => (
+  <RouterLink to={to} className={`item ${className} ${active ? "active" : ""}`}>
+    <li>
+      <Icon name={name} />
+      <span className="linkName">{title}</span>
+    </li>
+  </RouterLink>
+);
 
 export default function Link() {
+  const location = useLocation();
+  console.log(location.pathname);
   return (
     <S.LinkeStyle>
       <S.LinkBox>
         <div className="link">
-          {LINK_CONTENTS.map(link => (
-            <li className="item" key={link.id}>
-              <Icon name={link.name} />
-              <span className="linkName">{link.title}</span>
-            </li>
-          ))}
+          {LINK_CONTENTS.map(link => {
+            const active = location.pathname === link.path;
+            return (
+              <LinkItem
+                key={link.id}
+                to={link.path}
+                name={active ? link.activeName : link.name}
+                title={link.title}
+                active={active}
+              />
+            );
+          })}
         </div>
-        <li className="item logout">
-          <Icon name="door" />
-          <span className="linkName">로그인</span>
-        </li>
+        <LinkItem
+          to="/login"
+          name={location.pathname === "/login" ? "activeDoor" : "door"}
+          title="로그인"
+          className="logout"
+          active={location.pathname === "/login"}
+        />
       </S.LinkBox>
     </S.LinkeStyle>
   );
 }
 
 const LINK_CONTENTS = [
-  { id: 1, name: "home", title: "홈" },
-  { id: 2, name: "profile", title: "프로필" },
-  { id: 3, name: "favorite", title: "즐겨찾기" },
+  { id: 1, name: "home", activeName: "home", title: "홈", path: "/" },
+  {
+    id: 2,
+    name: "profile",
+    activeName: "activeProfile",
+    title: "프로필",
+    path: "/profile",
+  },
+  {
+    id: 3,
+    name: "favorite",
+    activeName: "activeFavorite",
+    title: "즐겨찾기",
+    path: "/favorites",
+  },
 ];

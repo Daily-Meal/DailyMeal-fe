@@ -24,6 +24,11 @@ export const LinkBox = styled.ul`
   font-size: 18px;
   flex-grow: 1;
 
+  li {
+    display: flex;
+    align-items: center;
+  }
+
   .item {
     display: flex;
     align-items: center;
@@ -36,11 +41,21 @@ export const LinkBox = styled.ul`
     }
   }
 
+  .item.active {
+    background-color: ${({ theme }) => theme.colors.defaultGreen};
+    /* color: ${({ theme }) => theme.colors.defaultGreen}; */
+    color: white;
+  }
+
   .linkName {
     margin-left: 15px;
   }
 
   .item.logout {
     background-color: ${({ theme }) => theme.colors.backgroundGray};
+  }
+
+  .item.logout.active {
+    background-color: ${({ theme }) => theme.colors.defaultGreen};
   }
 `;
