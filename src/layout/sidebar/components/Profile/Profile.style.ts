@@ -1,18 +1,13 @@
+import { layoutMixins } from "@/styles/mixins";
 import styled from "styled-components";
 
 export const ProfileStyle = styled.div`
   padding-top: 24px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  ${layoutMixins.columnFlexBox()}
   text-align: center;
 
   .info {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    ${layoutMixins.columnFlexBox()}
     font-size: 20px;
     margin-top: 60px;
     gap: 10px;

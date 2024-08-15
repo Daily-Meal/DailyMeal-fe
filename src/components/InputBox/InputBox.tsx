@@ -1,10 +1,11 @@
 import * as S from "./InputBox.style";
 
 interface IInputBoxProps {
-  label: string;
+  label?: string;
   children?: React.ReactNode;
   type: string;
   placeholder: string;
+  width?: string;
 }
 
 export default function InputBox({
@@ -12,9 +13,10 @@ export default function InputBox({
   children,
   type,
   placeholder,
+  width,
 }: IInputBoxProps) {
   return (
-    <S.InputBoxStyle>
+    <S.InputBoxStyle width={width}>
       <label>{label}</label>
       <input type={type} placeholder={placeholder} />
       {children}

@@ -5,6 +5,7 @@ import MyPage from "../pages/MyPage";
 import Sidebar from "@/layout/sidebar";
 import Signup from "@/pages/Signup";
 import styled from "styled-components";
+import Writing from "@/pages/Writing";
 
 export default function Router() {
   return (
@@ -15,6 +16,7 @@ export default function Router() {
           <Route path="/" element={<Main />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/writing" element={<Writing />} />
           <Route path="/mypage" element={<MyPage />} />
         </Routes>
       </RouterStyle>

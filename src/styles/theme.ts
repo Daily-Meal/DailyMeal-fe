@@ -29,7 +29,6 @@ const theme: DefaultTheme = {
   fonts: {
     main: "'Roboto', sans-serif",
   },
-  // spacing: (factor: number) => `${8 * factor}px`,
 };
 
 export default theme;

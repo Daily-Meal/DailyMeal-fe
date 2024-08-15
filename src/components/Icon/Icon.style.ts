@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { inherits } from "util";
 
 export const IconContainer = styled.img`
   width: ${props => props.width || "inherit"};
