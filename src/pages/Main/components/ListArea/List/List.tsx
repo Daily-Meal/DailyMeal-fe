@@ -14,11 +14,16 @@ export default function List({
 }: IList) {
   return (
     <ListStyle>
-      {url ? (
-        <img src={url} className="imageArea" />
-      ) : (
-        <img src="/defaultFood.jpg" className="imageArea" />
-      )}
+      <div className="flipArea">
+        <img src={url ? url : "/defaultFood.jpg"} className="flipFront" />
+        <div className="flipBack">
+          <ul>
+            {food_name.map((food, index) => (
+              <li key={index}>{food}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
       <div className="typeArea">
         <div className="mealType">{meal_type}</div>
         <div className="tagArea">

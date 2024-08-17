@@ -13,14 +13,57 @@ export const ListStyle = styled.div`
   box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.3);
   background-color: ${({ theme }) => theme.colors.backgroundGray};
 
-  .imageArea {
+  .flipArea {
     height: 60%;
-    object-fit: contain;
+
     border-top-left-radius: ${BORDER_RADIUS};
     border-top-right-radius: ${BORDER_RADIUS};
+
+    display: inline-grid;
+    color: white;
+    transition: transform 0.5s;
+    transform: perspective(800px) rotateY(0deg);
+    transform-style: preserve-3d;
   }
 
-  .detailArea {
+  .flipArea:hover {
+    transform: perspective(1000px) rotateY(180deg);
+  }
+
+  .flipArea > * {
+    border-top-right-radius: ${BORDER_RADIUS};
+    border-top-left-radius: ${BORDER_RADIUS};
+    backface-visibility: hidden;
+  }
+
+  .flipFront,
+  .flipBack {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+  }
+
+  .flipFront {
+    align-items: center;
+    justify-content: center;
+  }
+
+  .flipBack {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: ${({ theme }) => theme.colors.lightGray};
+    transform: rotateY(180deg);
+    color: white;
+    font-size: 24px;
+  }
+
+  .flipBack li {
+    margin-left: 25px;
+    list-style: disc;
+    list-style-position: inside;
+    margin-bottom: 10px;
   }
 
   .typeArea {
@@ -50,9 +93,9 @@ export const ListStyle = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
-    overflow-x: scroll; /* 수평 스크롤 활성화 */
+    overflow-x: scroll;
     font-size: 20px;
-    white-space: nowrap; /* 줄바꿈 방지 */
+    white-space: nowrap;
     -webkit-overflow-scrolling: touch;
   }
   .typeArea ::-webkit-scrollbar {
@@ -86,6 +129,9 @@ export const ListStyle = styled.div`
   .idArea .idText {
     margin-left: 15px;
     font-size: 18px;
+    &:hover {
+      cursor: pointer;
+    }
   }
 
   .bottom {
@@ -103,6 +149,9 @@ export const ListStyle = styled.div`
 
   .bottom .favorite {
     margin-left: ${BOTTOM_MARGIN};
+    &:hover {
+      cursor: pointer;
+    }
   }
 
   .bottom .filledFavorite {
