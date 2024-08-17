@@ -21,7 +21,6 @@ const LinkItem = ({ to, name, title, className, active }: ILinkItemProps) => (
 
 export default function Link() {
   const location = useLocation();
-  console.log(location.pathname);
   return (
     <S.LinkStyle>
       <S.LinkBox>

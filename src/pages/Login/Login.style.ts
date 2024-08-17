@@ -6,7 +6,7 @@ export const LoginStyle = styled.div`
   ${layoutMixins.columnFlexBox()}
   width: 100%;
   height: 100vh;
-
+  min-width: 500px;
   gap: 30px;
   p {
     text-align: center;
