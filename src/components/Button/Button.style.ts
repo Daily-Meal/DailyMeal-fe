@@ -19,6 +19,7 @@ export const ButtonStyle = styled.button<IButtonStyleProps>`
   border-radius: 8px;
   &:hover {
     background-color: #7eb238;
+    color: white;
     font-weight: 700;
   }
 `;

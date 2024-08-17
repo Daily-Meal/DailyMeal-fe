@@ -2,6 +2,13 @@ import { layoutMixins, scrollMixins } from "@/styles/mixins";
 import styled from "styled-components";
 
 export const WritingStyle = styled.div`
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const WritingContainer = styled.div`
   ${layoutMixins.columnFlexBox("", "center")};
   width: 30%;
   padding-bottom: 70px;
@@ -10,6 +17,9 @@ export const WritingStyle = styled.div`
   border-bottom-left-radius: 16px;
   border-bottom-right-radius: 16px;
   min-width: 400px;
+  max-height: 80vh;
+  height: 100%;
+  ${scrollMixins.customScrollbar("0px")}
 `;
 
 export const ContentContainer = styled.div`
@@ -26,7 +36,7 @@ export const DietForm = styled.form`
   gap: 6px;
   height: 200px;
   padding-right: 8px;
-  ${scrollMixins.customScrollbar}
+  ${scrollMixins.customScrollbar()}
 `;
 
 export const UploadContainer = styled.div`
@@ -74,5 +84,5 @@ export const TagForm = styled.form`
   height: 200px;
   padding-right: 8px;
   gap: 8px;
-  ${scrollMixins.customScrollbar}
+  ${scrollMixins.customScrollbar()}
 `;

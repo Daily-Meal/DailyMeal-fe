@@ -31,14 +31,14 @@ export const layoutMixins = {
 };
 
 export const scrollMixins = {
-  customScrollbar: css`
+  customScrollbar: (marginTop: string | number = "24px") => css`
     overflow-y: auto;
     &::-webkit-scrollbar {
       width: 8px; /* 스크롤바 너비 */
     }
 
     &::-webkit-scrollbar-track {
-      margin-top: 24px;
+      margin-top: ${marginTop};
       background: #f1f1f1; /* 스크롤바 트랙 색상 */
       border-radius: 0px;
     }
