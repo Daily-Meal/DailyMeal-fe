@@ -77,7 +77,7 @@ export const ListStyle = styled.div`
     font-size: 20px;
     white-space: nowrap;
 
-    margin: 0px 10px 0px 10px;
+    margin: 0px 10px 5px 10px;
     background-color: white;
     padding: 15px;
     text-align: center;
@@ -93,22 +93,20 @@ export const ListStyle = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
-    overflow-x: scroll;
+    overflow-x: hidden;
     font-size: 20px;
     white-space: nowrap;
     -webkit-overflow-scrolling: touch;
+    &:hover {
+      cursor: grab;
+    }
   }
   .typeArea ::-webkit-scrollbar {
-    width: 10px;
-    height: 6px;
-  }
-  .typeArea ::-webkit-scrollbar-thumb {
-    background: ${({ theme }) => theme.colors.defaultGreen};
-    border-radius: 12px 12px 12px 12px;
+    display: none;
   }
 
   .tagArea .tagBox {
-    margin: 0px 5px 5px 5px;
+    margin: 0px 0px 5px 10px;
     background-color: white;
     padding: 15px;
     text-align: center;
@@ -118,6 +116,7 @@ export const ListStyle = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    color: ${({ theme }) => theme.colors.textGray};
   }
 
   .idArea {

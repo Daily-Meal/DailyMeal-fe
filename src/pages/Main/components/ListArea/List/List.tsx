@@ -1,6 +1,7 @@
 import { IList } from "@/store/listStore";
 import { ListStyle } from "./List.style";
 import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
+import ScrollContainer from "react-indiana-drag-scroll";
 
 export default function List({
   category,
@@ -26,13 +27,13 @@ export default function List({
       </div>
       <div className="typeArea">
         <div className="mealType">{meal_type}</div>
-        <div className="tagArea">
+        <ScrollContainer className="tagArea">
           {tag_name.map((tag, index) => (
             <div className="tagBox" key={index}>
-              {tag}
+              # {tag}
             </div>
           ))}
-        </div>
+        </ScrollContainer>
       </div>
       <div className="idArea">
         <div className="idText">{user_id}</div>

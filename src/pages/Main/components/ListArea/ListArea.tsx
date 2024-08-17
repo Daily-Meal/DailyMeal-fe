@@ -4,7 +4,6 @@ import List from "./List/List";
 
 export default function ListArea() {
   const { lists } = useListStore();
-  console.log(lists);
 
   return (
     <>
