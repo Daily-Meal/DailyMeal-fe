@@ -8,4 +8,5 @@ export const SidebarStyle = styled.div`
   min-height: 100vh;
   border: none;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 10;
 `;
