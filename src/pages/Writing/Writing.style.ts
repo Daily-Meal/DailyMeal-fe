@@ -2,14 +2,13 @@ import { layoutMixins, scrollMixins } from "@/styles/mixins";
 import styled from "styled-components";
 
 export const WritingStyle = styled.div`
-  display: flex;
+  ${layoutMixins.flexBox()}
   width: 100%;
-  align-items: center;
-  justify-content: center;
 `;
 
 export const WritingContainer = styled.div`
   ${layoutMixins.columnFlexBox("", "center")};
+  margin-top: 50px;
   width: 30%;
   padding-bottom: 70px;
   border: none;
