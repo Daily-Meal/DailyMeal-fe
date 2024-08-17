@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { httpClient } from "@/api/http";
-import { LoginRequest, LoginResponse } from "@/models/login.model";
+import { LoginRequest } from "@/models/login.model";
 import { useAuthStore } from "@/stores/authStore";
 import { useNavigate } from "react-router-dom";
+import { loginUser } from "@/api/auth.api";
 
 export const useLogin = () => {
   const navigate = useNavigate();
@@ -15,8 +15,8 @@ export const useLogin = () => {
     setError(null);
 
     try {
-      const response = await httpClient.post<LoginResponse>("api 자리", data);
-      const { accessToken, refreshToken } = response.data;
+      const response = await loginUser(data);
+      const { accessToken, refreshToken } = response;
       setAccessToken(accessToken);
       setRefreshToken(refreshToken);
       navigate("/");

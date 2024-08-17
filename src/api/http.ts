@@ -14,11 +14,10 @@ const DEFAULT_TIMEOUT = 30000;
 
 export const createClient = (config?: AxiosRequestConfig) => {
   const axiosInstance = axios.create({
-    baseURL: "example.com", // 환경변수로 관리할 예정
+    baseURL: import.meta.env.VITE_BASE_URL,
     timeout: DEFAULT_TIMEOUT,
     headers: {
       "Content-Type": "application/json",
-      Authorization: "token", // 로그인 기능 구현할 예정
     },
     withCredentials: true,
     ...config,
@@ -47,9 +46,12 @@ export const createClient = (config?: AxiosRequestConfig) => {
           useAuthStore.getState();
 
         try {
-          const { data } = await axios.post("refresh토큰 api url", {
-            token: refreshToken,
-          });
+          const { data } = await axiosInstance.post(
+            `${import.meta.env.VITE_BASE_URL}/auth/token`,
+            {
+              token: refreshToken,
+            },
+          );
 
           setAccessToken(data.accessToken);
           axiosInstance.defaults.headers["Authorization"] =

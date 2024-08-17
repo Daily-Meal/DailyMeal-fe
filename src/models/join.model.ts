@@ -1,10 +1,10 @@
-export interface SignupRequest {
+export interface JoinRequest {
   username: string;
   email: string;
   nickname: string;
   password: string;
 }
 
-export interface SignupResponse {
+export interface JoinResponse {
   message: string;
 }

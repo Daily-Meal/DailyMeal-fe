@@ -1,20 +1,19 @@
-import { httpClient } from "@/api/http";
-import { signupUser } from "@/api/signup.api";
-import { SignupRequest, SignupResponse } from "@/models/signup.model";
 import { useState } from "react";
+import { joinUser } from "@/api/auth.api";
+import { JoinRequest } from "@/models/join.model";
 import { useNavigate } from "react-router-dom";
 
-export const useSignup = () => {
+export const useJoin = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const signup = async (data: SignupRequest) => {
+  const join = async (data: JoinRequest) => {
     setLoading(true);
     setError(null);
 
     try {
-      await signupUser(data);
+      await joinUser(data);
       navigate("/login");
     } catch (err: any) {
       setError(err.response?.data?.message || "실패 하셨습니다");
@@ -22,5 +21,5 @@ export const useSignup = () => {
       setLoading(false);
     }
   };
-  return { signup, loading, error };
+  return { join, loading, error };
 };
