@@ -3,6 +3,8 @@ import { CreateButton, FilterButton } from "./components/Button";
 import { ButtonsWrapper } from "./components/Button/Button.style";
 import ListArea from "./components/ListArea";
 import { useListStore } from "@/store/listStore";
+import MainContent from "@/layout/mainContent";
+import { useLocation } from "react-router-dom";
 
 type Filters = "전체" | "아침" | "점심" | "저녁";
 
@@ -36,7 +38,7 @@ export default function Main() {
       user_id: "user_id1",
       category: "아침",
       meal_type: "중식",
-      food_name: ["음식1", "음식2", "음식3"],
+      food_name: ["음식1", "음식2", "음식3", "음식4", "음식5", "음식6"],
       tag_name: ["태그1", "태그2", "태그3"],
     },
     {
@@ -87,7 +89,7 @@ export default function Main() {
   };
 
   return (
-    <>
+    <MainContent>
       <ButtonsWrapper>
         <div>
           {filters.map((filter, index) => {
@@ -102,10 +104,10 @@ export default function Main() {
           })}
         </div>
         <div>
-          <CreateButton></CreateButton>
+          <CreateButton />
         </div>
       </ButtonsWrapper>
-      <ListArea></ListArea>
-    </>
+      <ListArea />
+    </MainContent>
   );
 }

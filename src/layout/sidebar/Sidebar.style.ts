@@ -4,6 +4,7 @@ export const SidebarStyle = styled.div`
   display: flex;
   flex-direction: column;
   width: 300px;
+  min-width: 300px;
   padding-top: 93px;
   min-height: 100vh;
   border: none;

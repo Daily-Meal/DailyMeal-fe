@@ -7,8 +7,8 @@ export const ListStyle = styled.div`
   display: flex;
   flex-direction: column;
 
-  height: 414px;
-  width: 371px;
+  height: 100%;
+  width: 100%;
   border-radius: ${BORDER_RADIUS};
   box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.3);
   background-color: ${({ theme }) => theme.colors.backgroundGray};
@@ -24,6 +24,7 @@ export const ListStyle = styled.div`
     transition: transform 0.5s;
     transform: perspective(800px) rotateY(0deg);
     transform-style: preserve-3d;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   }
 
   .flipArea:hover {
@@ -47,6 +48,7 @@ export const ListStyle = styled.div`
   .flipFront {
     align-items: center;
     justify-content: center;
+    object-fit: contain;
   }
 
   .flipBack {
@@ -56,7 +58,7 @@ export const ListStyle = styled.div`
     background: ${({ theme }) => theme.colors.lightGray};
     transform: rotateY(180deg);
     color: white;
-    font-size: 24px;
+    font-size: 18px;
   }
 
   .flipBack li {
@@ -71,12 +73,11 @@ export const ListStyle = styled.div`
     flex-grow: 1;
     justify-content: space-between;
     align-items: center;
+    font-size: 15px;
   }
 
   .typeArea .mealType {
-    font-size: 20px;
     white-space: nowrap;
-
     margin: 0px 10px 5px 10px;
     background-color: white;
     padding: 15px;
@@ -92,9 +93,7 @@ export const ListStyle = styled.div`
   .typeArea .tagArea {
     display: flex;
     flex-direction: row;
-    align-items: center;
     overflow-x: hidden;
-    font-size: 20px;
     white-space: nowrap;
     -webkit-overflow-scrolling: touch;
     &:hover {
@@ -108,7 +107,7 @@ export const ListStyle = styled.div`
   .tagArea .tagBox {
     margin: 0px 0px 5px 10px;
     background-color: white;
-    padding: 15px;
+    padding: 10px;
     text-align: center;
     height: 30px;
     border-radius: 30px;
@@ -143,7 +142,7 @@ export const ListStyle = styled.div`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    font-size: 30px;
+    font-size: 20px;
   }
 
   .bottom .favorite {

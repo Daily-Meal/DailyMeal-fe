@@ -6,10 +6,13 @@ export const ListAreaStyle = styled.div`
   border-radius: 15px;
   flex-grow: 1;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  gap: 20px;
-  padding: 50px;
+  grid-template-columns: repeat(4, 250px);
+  grid-template-rows: repeat(2, 300px);
+  gap: 50px;
+  padding: 10px;
+
+  align-content: center;
+  justify-content: center;
 `;
 
 export const NoContentWrapper = styled.div`

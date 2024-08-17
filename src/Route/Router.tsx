@@ -7,7 +7,6 @@ import Signup from "@/pages/Signup";
 import styled from "styled-components";
 
 import Header from "@/layout/header_tmp/Header";
-import MainContent from "@/layout/mainContent";
 
 export default function Router() {
   return (
@@ -16,14 +15,12 @@ export default function Router() {
         <Sidebar />
         <MainContentStyle>
           <Header />
-          <MainContent>
-            <Routes>
-              <Route path="/" element={<Main />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/signup" element={<Signup />} />
-              <Route path="/mypage" element={<MyPage />} />
-            </Routes>
-          </MainContent>
+          <Routes>
+            <Route path="/" element={<Main />} />
+            <Route path="/mypage" element={<MyPage />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+          </Routes>
         </MainContentStyle>
       </RouterStyle>
     </BrowserRouter>
