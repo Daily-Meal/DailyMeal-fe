@@ -1,10 +1,10 @@
+import { useState } from "react";
 import { httpClient } from "@/api/http";
 import { LoginRequest, LoginResponse } from "@/models/login.model";
 import { useAuthStore } from "@/stores/authStore";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export const useLogin = async () => {
+export const useLogin = () => {
   const navigate = useNavigate();
   const { setAccessToken, setRefreshToken } = useAuthStore();
   const [loading, setLoading] = useState(false);
@@ -19,7 +19,6 @@ export const useLogin = async () => {
       const { accessToken, refreshToken } = response.data;
       setAccessToken(accessToken);
       setRefreshToken(refreshToken);
-
       navigate("/");
     } catch (err: any) {
       setError(err.response?.data?.message || "로그인에 실패하셨습니다");
