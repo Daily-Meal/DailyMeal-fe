@@ -1,26 +1,24 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { layoutMixins } from "@/styles/mixins";
 
 export const SignupStyle = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  ${layoutMixins.columnFlexBox()}
+  min-width: 800px;
+  width: 100%;
   height: 100vh;
-  justify-content: center;
   gap: 30px;
   width: 100%;
 
   form {
-    display: flex;
-    flex-direction: column;
+    ${layoutMixins.columnFlexBox("")}
     width: 100%;
-    align-items: center;
+
     gap: 4px;
 
     div {
-      display: flex;
+      ${layoutMixins.flexBox("flex-start", "")}
       width: 40%;
-      justify-content: flex-start;
     }
   }
 `;

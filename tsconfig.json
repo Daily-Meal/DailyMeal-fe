@@ -9,7 +9,10 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]
-    }
+    },
+    "moduleResolution": "node", // 추가: Node.js 스타일 모듈 해석
+    "target": "esnext", // 추가: 최신 JavaScript 기능을 사용
+    "module": "esnext" // 추가: 최신 ES 모듈 시스템 사용
   },
   "include": ["src/**/*.ts", "src/**/*.tsx"]
   // "references": [
