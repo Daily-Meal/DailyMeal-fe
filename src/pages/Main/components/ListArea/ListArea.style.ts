@@ -1,7 +1,10 @@
 import styled from "styled-components";
 import { PiListPlusFill } from "react-icons/pi";
+import { scrollMixins } from "@/styles/mixins";
 
 export const ListAreaStyle = styled.div`
+  ${scrollMixins.customScrollbar()}
+
   background-color: white;
   border-radius: 15px;
   flex-grow: 1;

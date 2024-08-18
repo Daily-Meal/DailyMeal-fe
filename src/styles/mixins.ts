@@ -35,6 +35,7 @@ export const scrollMixins = {
     overflow-y: auto;
     &::-webkit-scrollbar {
       width: 8px; /* 스크롤바 너비 */
+      height: 8px;
     }
 
     &::-webkit-scrollbar-track {
