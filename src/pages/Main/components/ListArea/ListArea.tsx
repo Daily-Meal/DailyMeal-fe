@@ -1,6 +1,6 @@
 import { useListStore } from "@/store/listStore";
-import * as S from "./ListArea.style";
 import List from "./List/List";
+import * as S from "./ListArea.style";
 
 export default function ListArea() {
   const { lists } = useListStore();

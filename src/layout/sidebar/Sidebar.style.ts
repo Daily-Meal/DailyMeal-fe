@@ -4,7 +4,7 @@ import styled from "styled-components";
 export const SidebarStyle = styled.div`
   ${layoutMixins.columnFlexBox("", "")}
   width: 300px;
-  min-width: 300px;
+  flex-shrink: 0;
   padding-top: 93px;
   min-height: 100vh;
   border: none;

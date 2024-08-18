@@ -1,9 +1,8 @@
+import { layoutMixins } from "@/styles/mixins";
 import styled from "styled-components";
 
 export const ButtonsWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  ${layoutMixins.flexBox("space-between")}
   margin-bottom: 10px;
 `;
 

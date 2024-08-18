@@ -1,23 +1,21 @@
+import { layoutMixins } from "@/styles/mixins";
 import styled from "styled-components";
-
-const BORDER_RADIUS = "13px";
-const BOTTOM_MARGIN = "20px";
 
 export const ListStyle = styled.div`
   display: flex;
   flex-direction: column;
 
-  height: 100%;
-  width: 100%;
-  border-radius: ${BORDER_RADIUS};
+  height: 300px;
+  width: 250px;
+  border-radius: ${({ theme }) => theme.radius.LIST_BORDER_RADIUS};
   box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.3);
   background-color: ${({ theme }) => theme.colors.backgroundGray};
 
   .flipArea {
     height: 60%;
 
-    border-top-left-radius: ${BORDER_RADIUS};
-    border-top-right-radius: ${BORDER_RADIUS};
+    border-top-left-radius: ${({ theme }) => theme.radius.LIST_BORDER_RADIUS};
+    border-top-right-radius: ${({ theme }) => theme.radius.LIST_BORDER_RADIUS};
 
     display: inline-grid;
     color: white;
@@ -32,8 +30,8 @@ export const ListStyle = styled.div`
   }
 
   .flipArea > * {
-    border-top-right-radius: ${BORDER_RADIUS};
-    border-top-left-radius: ${BORDER_RADIUS};
+    border-top-right-radius: ${({ theme }) => theme.radius.LIST_BORDER_RADIUS};
+    border-top-left-radius: ${({ theme }) => theme.radius.LIST_BORDER_RADIUS};
     backface-visibility: hidden;
   }
 
@@ -85,9 +83,7 @@ export const ListStyle = styled.div`
     height: 30px;
     border-radius: 30px;
     box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.3);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    ${layoutMixins.flexBox()}
   }
 
   .typeArea .tagArea {
@@ -135,8 +131,10 @@ export const ListStyle = styled.div`
   .bottom {
     border-top: 1px solid rgba(0, 0, 0, 0.2);
     flex-grow: 1;
-    border-bottom-left-radius: ${BORDER_RADIUS};
-    border-bottom-right-radius: ${BORDER_RADIUS};
+    border-bottom-left-radius: ${({ theme }) =>
+      theme.radius.LIST_BORDER_RADIUS};
+    border-bottom-right-radius: ${({ theme }) =>
+      theme.radius.LIST_BORDER_RADIUS};
 
     display: flex;
     flex-direction: row;
@@ -146,18 +144,18 @@ export const ListStyle = styled.div`
   }
 
   .bottom .favorite {
-    margin-left: ${BOTTOM_MARGIN};
+    margin-left: ${({ theme }) => theme.margin.LIST_BOTTOM_MARGIN};
     &:hover {
       cursor: pointer;
     }
   }
 
   .bottom .filledFavorite {
-    margin-left: ${BOTTOM_MARGIN};
+    margin-left: ${({ theme }) => theme.margin.LIST_BOTTOM_MARGIN};
     color: red;
   }
   .bottom .createdDate {
     font-size: 20px;
-    margin-right: ${BOTTOM_MARGIN};
+    margin-right: ${({ theme }) => theme.margin.LIST_BOTTOM_MARGIN};
   }
 `;
