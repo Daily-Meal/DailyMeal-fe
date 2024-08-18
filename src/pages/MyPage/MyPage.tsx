@@ -1,3 +1,5 @@
+import Content from "@/components/Content";
+
 export default function MyPage() {
-  return <div>MyPage</div>;
+  return <Content></Content>;
 }
