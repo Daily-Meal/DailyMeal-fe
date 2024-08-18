@@ -1,10 +1,14 @@
+import { layoutMixins } from "@/styles/mixins";
 import styled from "styled-components";
 
-export const InputBoxStyle = styled.div`
-  display: flex;
-  flex-direction: column;
+interface InputBoxStyleProps {
+  width?: string;
+}
+
+export const InputBoxStyle = styled.div<InputBoxStyleProps>`
+  ${layoutMixins.columnFlexBox("", "")}
   gap: 8px;
-  width: 40%;
+  width: ${props => props.width || "40%"};
   label {
   }
 

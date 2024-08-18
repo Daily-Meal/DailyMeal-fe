@@ -1,10 +1,12 @@
 import InputBox from "@/components/InputBox";
 import Button from "@/components/Button";
+import Icon from "@/components/Icon";
 import * as S from "./Login.style";
 
 export default function Login() {
   return (
     <S.LoginStyle>
+      <Icon name="logoLetter" width="300px" height="50px" />
       <p>
         DailyMeal은, 사용자들이 오늘 하루 먹었던 음식들을 <br />
         자유롭게 공유할 수 있는 공간입니다.

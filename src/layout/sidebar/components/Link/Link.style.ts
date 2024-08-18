@@ -1,11 +1,9 @@
+import { layoutMixins } from "@/styles/mixins";
 import styled from "styled-components";
 
 export const LinkStyle = styled.div`
+  ${layoutMixins.columnFlexBox("", "center")}
   margin-top: 60px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
   text-align: center;
   flex-grow: 1;
 
@@ -17,9 +15,7 @@ export const LinkStyle = styled.div`
 
 export const LinkBox = styled.ul`
   padding: 0 23px 110px 32px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  ${layoutMixins.columnFlexBox("space-between", "")}
   width: 100%;
   font-size: 18px;
   flex-grow: 1;
@@ -30,8 +26,7 @@ export const LinkBox = styled.ul`
   }
 
   .item {
-    display: flex;
-    align-items: center;
+    ${layoutMixins.flexBox("")}
     padding: 16px 0px 10px 20px;
     border-radius: 8px;
     margin-right: 10px;

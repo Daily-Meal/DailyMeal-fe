@@ -1,10 +1,12 @@
 import InputBox from "@/components/InputBox";
 import Button from "@/components/Button";
 import * as S from "./Signup.style";
+import Icon from "@/components/Icon";
 
 export default function Signup() {
   return (
     <S.SignupStyle>
+      <Icon name="logoLetter" width="300px" height="50px" />
       <form>
         <InputBox label="아이디" type="email" placeholder="abcd@email.com" />
         <div>
