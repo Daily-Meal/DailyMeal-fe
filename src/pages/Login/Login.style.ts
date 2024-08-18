@@ -1,12 +1,12 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { layoutMixins } from "@/styles/mixins";
 
 export const LoginStyle = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  ${layoutMixins.columnFlexBox()}
+  width: 100%;
   height: 100vh;
-  justify-content: center;
+  min-width: 500px;
   gap: 30px;
   p {
     text-align: center;
