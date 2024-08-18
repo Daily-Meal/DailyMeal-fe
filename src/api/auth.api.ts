@@ -8,6 +8,6 @@ export const joinUser = async (data: JoinRequest): Promise<JoinResponse> => {
 };
 
 export const loginUser = async (data: LoginRequest) => {
-  const response = await httpClient.post<LoginResponse>("login", data);
+  const response = await httpClient.post<LoginResponse>("/login", data);
   return response.data;
 };
