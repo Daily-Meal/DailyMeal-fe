@@ -1,4 +1,4 @@
-import { useListStore } from "@/store/listStore";
+import { useListStore } from "@/stores/listStore";
 import List from "./List/List";
 import * as S from "./ListArea.style";
 

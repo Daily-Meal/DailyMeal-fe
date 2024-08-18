@@ -1,4 +1,4 @@
-import { IList } from "@/store/listStore";
+import { IList } from "@/stores/listStore";
 import { ListStyle } from "./List.style";
 import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
 import ScrollContainer from "react-indiana-drag-scroll";

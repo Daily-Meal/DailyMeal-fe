@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { CreateButton, FilterButton } from "./components/Button";
 import { ButtonsWrapper } from "./components/Button/Button.style";
 import ListArea from "./components/ListArea";
-import { useListStore } from "@/store/listStore";
+import { useListStore } from "@/stores/listStore";
 import MainContent from "@/layout/mainContent";
 import { useLocation } from "react-router-dom";
 
