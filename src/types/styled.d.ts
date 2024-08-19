@@ -1,5 +1,5 @@
 import "styled-components";
-import { Colors } from "../styles/theme";
+import { Colors, Margin, Radius } from "../styles/theme";
 
 declare module "styled-components" {
   export interface DefaultTheme {
@@ -7,6 +7,8 @@ declare module "styled-components" {
     fonts: {
       main: string;
     };
+    radius: Radius;
+    margin: Margin;
     // 추가적인 속성들을 여기에 정의할 수 있습니다.
   }
 }

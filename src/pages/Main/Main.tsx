@@ -1,5 +1,5 @@
-import * as S from "./Main.style";
+import Content from "@/components/Content";
 
 export default function Main() {
-  return <S.MainStyle>Main dassd</S.MainStyle>;
+  return <Content></Content>;
 }

@@ -66,4 +66,11 @@ const LINK_CONTENTS = [
     title: "즐겨찾기",
     path: "/favorites",
   },
+  {
+    id: 4,
+    name: "mypage",
+    activeName: "activeMypage",
+    title: "마이페이지",
+    path: "/mypage",
+  },
 ];

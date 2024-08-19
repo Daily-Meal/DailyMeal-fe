@@ -14,6 +14,14 @@ export interface Colors {
   linkGreen: string;
 }
 
+export interface Radius {
+  LIST_BORDER_RADIUS: string;
+}
+
+export interface Margin {
+  LIST_BOTTOM_MARGIN: string;
+}
+
 const theme: DefaultTheme = {
   colors: {
     defaultGreen: "#88C533",
@@ -30,6 +38,12 @@ const theme: DefaultTheme = {
   },
   fonts: {
     main: "'Roboto', sans-serif",
+  },
+  radius: {
+    LIST_BORDER_RADIUS: "13px",
+  },
+  margin: {
+    LIST_BOTTOM_MARGIN: "20px",
   },
 };
 

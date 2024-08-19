@@ -6,8 +6,10 @@ export const HeaderContainer = styled.div`
   gap: 8px;
   padding: 29px 0 10px 38px;
   height: 90px;
+  flex-shrink: 0;
   width: 100%;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 10;
 
   p {
     color: ${({ theme }) => theme.colors.lightTextGray};
