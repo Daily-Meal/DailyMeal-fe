@@ -6,6 +6,7 @@ import Sidebar from "@/layout/sidebar";
 import Signup from "@/pages/Signup";
 import Writing from "@/pages/Writing";
 import Header from "@/layout/header/";
+import Favorite from "@/pages/Favorite";
 import { layoutMixins } from "@/styles/mixins";
 import styled from "styled-components";
 
@@ -24,6 +25,7 @@ export default function Router() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/writing" element={<Writing />} />
           <Route path="/mypage" element={<MyPage />} />
+          <Route path="/favorites" element={<Favorite />} />
         </Routes>
       </MainContent>
     </RouterStyle>
