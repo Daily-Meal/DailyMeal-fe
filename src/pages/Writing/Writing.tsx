@@ -1,8 +1,8 @@
 import InputBox from "@/components/InputBox";
 import Button from "@/components/Button";
 import Icon from "@/components/Icon";
-import * as S from "./Writing.style";
 import { useCreate } from "@/hooks/useCreate";
+import * as S from "./Writing.style";
 
 export default function Writing() {
   const { register, onSubmit } = useCreate();
