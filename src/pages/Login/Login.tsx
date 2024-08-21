@@ -25,14 +25,14 @@ export default function Login() {
         <S.LoginForm onSubmit={methods.handleSubmit(onSubmit)}>
           <InputBox
             label="아이디"
-            type="string"
+            type="email"
             placeholder="abcd@email.com"
             name="email"
             register={methods.register}
           />
           <InputBox
             label="비밀번호"
-            type="string"
+            type="password"
             placeholder="password"
             name="password"
             register={methods.register}

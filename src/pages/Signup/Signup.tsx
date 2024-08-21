@@ -78,7 +78,7 @@ export default function Signup() {
         <S.CheckBox>
           <InputBox
             label="닉네임"
-            type="string"
+            type="text"
             placeholder="사용할 닉네임을 입력해주세요"
             name="nickname"
             register={methods.register}
