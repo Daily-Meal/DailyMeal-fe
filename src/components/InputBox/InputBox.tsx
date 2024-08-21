@@ -1,3 +1,4 @@
+import { UseFormRegister } from "react-hook-form";
 import * as S from "./InputBox.style";
 
 interface IInputBoxProps {
@@ -6,6 +7,9 @@ interface IInputBoxProps {
   type: string;
   placeholder: string;
   width?: string;
+  name: string;
+  rules?: object;
+  register: UseFormRegister<any>;
 }
 
 export default function InputBox({
@@ -14,11 +18,14 @@ export default function InputBox({
   type,
   placeholder,
   width,
+  name,
+  rules = {},
+  register,
 }: IInputBoxProps) {
   return (
     <S.InputBoxStyle width={width}>
       <label>{label}</label>
-      <input type={type} placeholder={placeholder} />
+      <input type={type} placeholder={placeholder} {...register(name, rules)} />
       {children}
     </S.InputBoxStyle>
   );

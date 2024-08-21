@@ -14,6 +14,13 @@ export const LoginStyle = styled.div`
   }
 `;
 
+export const LoginForm = styled.form`
+  ${layoutMixins.columnFlexBox()}
+  width: 100%;
+  min-width: 500px;
+  gap: 30px;
+`;
+
 export const StyledLink = styled(Link)`
   text-decoration: underline;
   color: ${({ theme }) => theme.colors.linkGreen};

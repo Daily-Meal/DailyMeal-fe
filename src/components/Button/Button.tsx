@@ -1,7 +1,8 @@
-import React from "react";
 import * as S from "./Button.style";
 
-interface IButtonProps extends S.IButtonStyleProps {
+interface IButtonProps
+  extends S.IButtonStyleProps,
+    React.ButtonHTMLAttributes<HTMLButtonElement> {
   title: string;
 }
 
@@ -11,6 +12,7 @@ export default function Button({
   height,
   backgroundColor,
   color,
+  ...rest
 }: IButtonProps) {
   return (
     <S.ButtonStyle
@@ -18,6 +20,7 @@ export default function Button({
       height={height}
       backgroundColor={backgroundColor}
       color={color}
+      {...rest}
     >
       {title}
     </S.ButtonStyle>

@@ -1,5 +1,4 @@
 export interface JoinRequest {
-  username: string;
   email: string;
   nickname: string;
   password: string;

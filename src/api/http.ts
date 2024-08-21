@@ -23,7 +23,7 @@ export const createClient = (config?: AxiosRequestConfig) => {
     ...config,
   });
 
-  axios.interceptors.request.use(config => {
+  axiosInstance.interceptors.request.use(config => {
     const { accessToken } = useAuthStore.getState();
     if (accessToken) {
       config.headers.Authorization = `Bearer ${accessToken}`;
