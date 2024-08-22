@@ -9,6 +9,7 @@ import Header from "@/layout/header/";
 import Favorite from "@/pages/Favorite";
 import { layoutMixins } from "@/styles/mixins";
 import styled from "styled-components";
+import UserBoard from "@/pages/UserBoard";
 
 export default function Router() {
   const location = useLocation();
@@ -26,6 +27,7 @@ export default function Router() {
           <Route path="/writing" element={<Writing />} />
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/favorites" element={<Favorite />} />
+          <Route path="/:userId" element={<UserBoard />} />
         </Routes>
       </MainContent>
     </RouterStyle>

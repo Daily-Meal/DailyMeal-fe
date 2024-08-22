@@ -4,19 +4,37 @@ import { scrollMixins } from "@/styles/mixins";
 
 export const ListAreaStyle = styled.div`
   ${scrollMixins.customScrollbar()}
-
   background-color: white;
   border-radius: 15px;
   flex-grow: 1;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  gap: 30px;
-  padding: 10px;
-
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-items: center;
-  overflow: auto;
+  justify-content: center;
+  overflow-y: auto;
+  max-height: 80vh;
+
+  ::-webkit-scrollbar {
+    width: 0px;
+  }
+
+  .itemContainer {
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 80px;
+    padding: 10px;
+
+    align-items: center;
+    justify-items: center;
+    overflow: auto;
+  }
+
+  .infiniteScrollArea {
+    background-color: yellow;
+    height: 50px;
+  }
 `;
 
 export const NoContentWrapper = styled.div`
