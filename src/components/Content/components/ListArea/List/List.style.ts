@@ -179,7 +179,6 @@ export const ListStyle = styled.div`
   }
 
   .bottom .filledFavorite {
-    margin-left: ${({ theme }) => theme.margin.LIST_BOTTOM_MARGIN};
     color: red;
   }
   .bottom .createdDate {

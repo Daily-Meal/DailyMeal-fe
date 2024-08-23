@@ -7,7 +7,12 @@ import { BoardInfo } from "@/models/boardInfo.model";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import { setFavorite } from "@/api/favorites.api";
+import { useState } from "react";
 dayjs.extend(utc);
+
+interface BoardWithFavorite extends BoardInfo {
+  isFavorite: boolean;
+}
 
 export default function List({
   board_id,
@@ -18,13 +23,16 @@ export default function List({
   user,
   meals,
   tags,
-}: BoardInfo) {
+  isFavorite,
+}: BoardWithFavorite) {
   const currentPath = useLocation().pathname;
   const navigate = useNavigate();
 
   const formatDate = (created_at: string) => {
     return dayjs.utc(created_at).format("YYYY-MM-DD HH:mm:ss");
   };
+
+  const [listFavorite, setListFavorite] = useState(isFavorite);
 
   return (
     <ListStyle>
@@ -72,12 +80,24 @@ export default function List({
       </div>
       <div className="bottom">
         <div className="favorite">
-          <MdFavoriteBorder
-            onClick={() => {
-              setFavorite(board_id);
-            }}
-          />
+          {listFavorite ? (
+            <MdFavorite
+              className="filledFavorite"
+              onClick={async () => {
+                await setFavorite(board_id);
+                setListFavorite(false);
+              }}
+            />
+          ) : (
+            <MdFavoriteBorder
+              onClick={() => {
+                setFavorite(board_id);
+                setListFavorite(true);
+              }}
+            />
+          )}
         </div>
+
         <div className="createdDate">{formatDate(created_at)}</div>
       </div>
     </ListStyle>

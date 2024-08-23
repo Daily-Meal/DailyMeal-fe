@@ -31,6 +31,9 @@ export default function ListArea({ category }: ListAreaProps) {
   const [hasMore, setHasMore] = useState(true);
   let isFetching = false;
 
+  const { accessToken } = useAuthStore();
+  const [favorites, setFavorites] = useState<string[]>([]);
+
   const currentPath = useLocation().pathname;
   const regex = new RegExp("^/user");
 
@@ -49,13 +52,18 @@ export default function ListArea({ category }: ListAreaProps) {
       break;
     default:
       // 특정 사용자의 게시글 조회 /user/{userId}
-      const userUrl = parseInt(currentPath.split("/").slice(-1).join());
       if (regex.test(currentPath) && userId) {
         selectedApi = getUserBoards;
       } else {
         navigate("/");
       }
   }
+
+  const isFavoriteList = (list: BoardInfo): boolean => {
+    return favorites.some(favorite => {
+      return favorite === list.board_id;
+    });
+  };
 
   const fetchData = async (isFirstFetch: boolean = false) => {
     if (isFetching) return;
@@ -68,6 +76,17 @@ export default function ListArea({ category }: ListAreaProps) {
         userId: userId.toString(),
       };
       const responseData = await selectedApi(data);
+
+      if (accessToken) {
+        // 즐겨찾기 boardId 조회
+        const favoritesData = await getFavoritesBoards({
+          limit: ITEM_LIMIT,
+          offset,
+        });
+        favoritesData.boards.forEach(favoriteData => {
+          setFavorites(prev => [...prev, favoriteData.board_id]);
+        });
+      }
 
       if (responseData) {
         if (responseData.boards.length < 8) {
@@ -142,6 +161,7 @@ export default function ListArea({ category }: ListAreaProps) {
                 tags={list.tags}
                 user={list.user}
                 image={list.image}
+                isFavorite={isFavoriteList(list)}
               />
             ))}
           </div>
