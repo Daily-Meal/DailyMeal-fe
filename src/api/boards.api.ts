@@ -10,3 +10,12 @@ export const createPost = async (data: WritingRequest) => {
     throw error;
   }
 };
+
+export const deletePost = async (data: string) => {
+  try {
+    await httpClient.delete(`/boards/${data}`);
+  } catch (error) {
+    console.error("삭제 중 에러 발생", error);
+    throw error;
+  }
+};

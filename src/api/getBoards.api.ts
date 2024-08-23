@@ -41,7 +41,6 @@ export const getMyBoards = async (
   try {
     let url = `/mypage/boards?limit=${data.limit}&offset=${data.offset}`;
     const response = await httpClient.get(url);
-    console.log(response.data);
     return response.data;
   } catch (error) {
     console.error("데이터 조회 에러", error);

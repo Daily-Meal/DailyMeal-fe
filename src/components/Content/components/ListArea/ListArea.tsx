@@ -15,6 +15,7 @@ import {
 } from "@/models/boardInfo.model";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAuthStore } from "@/stores/authStore";
+import { deletePost } from "@/api/boards.api";
 
 const ITEM_LIMIT = 8;
 
@@ -63,6 +64,17 @@ export default function ListArea({ category }: ListAreaProps) {
     return favorites.some(favorite => {
       return favorite === list.board_id;
     });
+  };
+
+  const handleDelete = async (boardId: string) => {
+    try {
+      await deletePost(boardId);
+      setBoards(prevBoards =>
+        prevBoards.filter(board => board.board_id !== boardId),
+      );
+    } catch (error) {
+      console.error("게시물 삭제 오류", error);
+    }
   };
 
   const fetchData = async (isFirstFetch: boolean = false) => {
@@ -162,6 +174,7 @@ export default function ListArea({ category }: ListAreaProps) {
                 user={list.user}
                 image={list.image}
                 isFavorite={isFavoriteList(list)}
+                handleDelete={handleDelete}
               />
             ))}
           </div>

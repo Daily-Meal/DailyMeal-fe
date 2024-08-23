@@ -8,10 +8,12 @@ import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import { setFavorite } from "@/api/favorites.api";
 import { useState } from "react";
+import { deletePost } from "@/api/boards.api";
 dayjs.extend(utc);
 
 interface BoardWithFavorite extends BoardInfo {
   isFavorite: boolean;
+  handleDelete: (boardId: string) => Promise<void>;
 }
 
 export default function List({
@@ -24,10 +26,10 @@ export default function List({
   meals,
   tags,
   isFavorite,
+  handleDelete,
 }: BoardWithFavorite) {
   const currentPath = useLocation().pathname;
   const navigate = useNavigate();
-
   const formatDate = (created_at: string) => {
     return dayjs.utc(created_at).format("YYYY-MM-DD HH:mm:ss");
   };
@@ -71,7 +73,12 @@ export default function List({
               <MdModeEdit className="editIcon" />
               수정
             </div>
-            <div className="delete">
+            <div
+              className="delete"
+              onClick={() => {
+                handleDelete(board_id);
+              }}
+            >
               <IoMdTrash className="deleteIcon" />
               삭제
             </div>
