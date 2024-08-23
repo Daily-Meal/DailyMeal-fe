@@ -47,12 +47,11 @@ export const createClient = (config?: AxiosRequestConfig) => {
 
         try {
           const { data } = await axiosInstance.post(
-            `${import.meta.env.VITE_BASE_URL}/auth/token`,
+            `${import.meta.env.VITE_BASE_URL}/refresh`,
             {
-              token: refreshToken,
+              refreshToken: refreshToken,
             },
           );
-
           setAccessToken(data.accessToken);
           axiosInstance.defaults.headers["Authorization"] =
             `Bearer ${data.accessToken}`;

@@ -27,7 +27,7 @@ export default function Router() {
           <Route path="/writing" element={<Writing />} />
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/favorites" element={<Favorite />} />
-          <Route path="/:userId" element={<UserBoard />} />
+          <Route path="/user/:userId" element={<UserBoard />} />
         </Routes>
       </MainContent>
     </RouterStyle>

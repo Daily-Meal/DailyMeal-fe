@@ -1,87 +1,149 @@
-import { useListStore } from "@/stores/listStore";
 import List from "./List/List";
 import * as S from "./ListArea.style";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
+import {
+  getFavoritesBoards,
+  getFilteredBoards,
+  getMyBoards,
+  getUserBoards,
+} from "@/api/getBoards.api";
+import {
+  BoardInfo,
+  BoardsInfo,
+  Filters,
+  RequestBoard,
+} from "@/models/boardInfo.model";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useAuthStore } from "@/stores/authStore";
 
-const useIntersection = (options: IntersectionObserverInit) => {
-  const [intersection, setIntersection] =
-    useState<IntersectionObserverEntry | null>(null);
-  const [element, setElement] = useState<HTMLElement | null>(null);
+const ITEM_LIMIT = 8;
 
-  const captureIntersectionElement = useCallback(
-    (element: HTMLElement | null) => {
-      element && setElement(element);
-    },
-    [],
-  );
+interface ListAreaProps {
+  category: Filters;
+}
 
-  useEffect(() => {
-    if (element == null || typeof IntersectionObserver !== "function") return;
+type ApiFunction = (data: RequestBoard) => Promise<BoardsInfo>;
 
-    const handler = (entries: IntersectionObserverEntry[]) => {
-      setIntersection(entries[0]);
-    };
-    const observer = new IntersectionObserver(handler, options);
-    observer.observe(element);
+export default function ListArea({ category }: ListAreaProps) {
+  const navigate = useNavigate();
+  const [boards, setBoards] = useState<BoardInfo[]>([]);
+  const [offset, setOffset] = useState(0);
+  const [hasMore, setHasMore] = useState(true);
+  let isFetching = false;
 
-    return () => {
-      setIntersection(null);
-      observer.disconnect();
-    };
-  }, [options, element]);
+  const currentPath = useLocation().pathname;
+  const regex = new RegExp("^/user");
 
-  return { captureIntersectionElement, element, intersection };
-};
+  const userId = parseInt(currentPath.split("/").slice(-1).join());
 
-export default function ListArea() {
-  const { captureIntersectionElement, intersection, element } = useIntersection(
-    {
-      threshold: 0,
-    },
-  );
+  let selectedApi: ApiFunction;
+  switch (currentPath) {
+    case "/":
+      selectedApi = getFilteredBoards;
+      break;
+    case "/favorites":
+      selectedApi = getFavoritesBoards;
+      break;
+    case "/mypage":
+      selectedApi = getMyBoards;
+      break;
+    default:
+      // 특정 사용자의 게시글 조회 /user/{userId}
+      const userUrl = parseInt(currentPath.split("/").slice(-1).join());
+      if (regex.test(currentPath) && userId) {
+        selectedApi = getUserBoards;
+      } else {
+        navigate("/");
+      }
+  }
 
-  const { lists, setDatas } = useListStore();
+  const fetchData = async (isFirstFetch: boolean = false) => {
+    if (isFetching) return;
+    isFetching = true;
+    try {
+      const data: RequestBoard = {
+        limit: ITEM_LIMIT,
+        offset,
+        category,
+        userId: userId.toString(),
+      };
+      const responseData = await selectedApi(data);
 
-  // `HTMLDivElement` 타입을 명시하여 containerRef.current가 HTMLElement임을 보장
-  const containerRef = useRef<HTMLDivElement | null>(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    if (intersection?.isIntersecting) {
-      setLoading(false);
-
-      const { intersectionRect } = intersection;
-
-      containerRef.current?.scrollTo({
-        top: 0,
-      });
+      if (responseData) {
+        if (responseData.boards.length < 8) {
+          setHasMore(false);
+        }
+        setOffset(prev => prev + ITEM_LIMIT);
+        if (isFirstFetch) {
+          setBoards(responseData.boards);
+        } else {
+          setBoards(prev => [...prev, ...responseData.boards]);
+        }
+      }
+    } catch (error) {
+      console.error("데이터 조회 에러", error);
+    } finally {
+      isFetching = false;
     }
-  }, [intersection, loading]);
+  };
+
+  useEffect(() => {
+    fetchData(true);
+  }, []);
+
+  useEffect(() => {
+    const itemContainer = document.querySelector(".itemContainer");
+
+    if (hasMore && itemContainer) {
+      const observer = new IntersectionObserver(
+        entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              fetchData(false);
+            }
+          });
+        },
+        {
+          root: itemContainer,
+          threshold: 0.8,
+        },
+      );
+
+      const targetElement =
+        itemContainer.children[itemContainer.children.length - 4];
+
+      if (targetElement) {
+        observer.observe(targetElement);
+      }
+
+      if (!hasMore) {
+        observer.disconnect();
+      }
+
+      return () => {
+        observer.disconnect();
+      };
+    }
+  }, [boards]);
 
   return (
     <>
-      {lists.length > 0 ? (
+      {boards.length > 0 ? (
         <S.ListAreaStyle>
-          <div className="itemContainer" ref={containerRef}>
-            {lists.map(list => (
+          <div className="itemContainer">
+            {boards.map(list => (
               <List
-                key={list.id}
+                key={list.board_id}
                 category={list.category}
                 created_at={list.created_at}
-                food_name={list.food_name}
-                id={list.id}
+                meals={list.meals}
+                board_id={list.board_id}
                 meal_type={list.meal_type}
-                tag_name={list.tag_name}
-                user_id={list.user_id}
-                url={list.url}
+                tags={list.tags}
+                user={list.user}
+                image={list.image}
               />
             ))}
-            <div
-              className="infiniteScrollArea"
-              ref={captureIntersectionElement}
-            >
-              adsf
-            </div>
           </div>
         </S.ListAreaStyle>
       ) : (

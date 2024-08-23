@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import * as S from "./Button.style";
 
 interface ButtonProps {
@@ -28,5 +29,15 @@ export function FilterButton({
 }
 
 export function CreateButton({ width, height }: Omit<ButtonProps, "name">) {
-  return <S.CreateButtonStyle>+ 게시물 작성하기</S.CreateButtonStyle>;
+  const navigate = useNavigate();
+
+  return (
+    <S.CreateButtonStyle
+      onClick={() => {
+        navigate("/writing");
+      }}
+    >
+      + 게시물 작성하기
+    </S.CreateButtonStyle>
+  );
 }

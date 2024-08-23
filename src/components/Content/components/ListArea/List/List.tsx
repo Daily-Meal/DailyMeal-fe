@@ -1,30 +1,39 @@
-import { IList } from "@/stores/listStore";
 import { ListStyle } from "./List.style";
 import { MdFavorite, MdFavoriteBorder, MdModeEdit } from "react-icons/md";
 import ScrollContainer from "react-indiana-drag-scroll";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { IoMdTrash } from "react-icons/io";
+import { BoardInfo } from "@/models/boardInfo.model";
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
+import { setFavorite } from "@/api/favorites.api";
+dayjs.extend(utc);
 
 export default function List({
-  category,
+  board_id,
+  image,
   created_at,
-  food_name,
-  id,
+  category,
   meal_type,
-  tag_name,
-  user_id,
-  url,
-}: IList) {
+  user,
+  meals,
+  tags,
+}: BoardInfo) {
   const currentPath = useLocation().pathname;
+  const navigate = useNavigate();
+
+  const formatDate = (created_at: string) => {
+    return dayjs.utc(created_at).format("YYYY-MM-DD HH:mm:ss");
+  };
 
   return (
     <ListStyle>
       <div className="flipArea">
-        <img src={url ? url : "/defaultFood.jpg"} className="flipFront" />
+        <img src={image ? image : "/defaultFood.jpg"} className="flipFront" />
         <div className="flipBack">
           <ul>
-            {food_name.map((food, index) => (
-              <li key={index}>{food}</li>
+            {meals.map((meal, index) => (
+              <li key={index}>{meal.name}</li>
             ))}
           </ul>
         </div>
@@ -32,15 +41,22 @@ export default function List({
       <div className="typeArea">
         <div className="mealType">{meal_type}</div>
         <ScrollContainer className="tagArea">
-          {tag_name.map((tag, index) => (
+          {tags.map((tag, index) => (
             <div className="tagBox" key={index}>
-              # {tag}
+              # {tag.name}
             </div>
           ))}
         </ScrollContainer>
       </div>
       <div className="idArea">
-        <div className="idText">{user_id}</div>
+        <div
+          className="idText"
+          onClick={() => {
+            navigate(`/user/${user.user_id}`);
+          }}
+        >
+          {user.nickname}
+        </div>
         {currentPath === "/mypage" ? (
           <div className="mypageArea">
             <div className="edit">
@@ -56,9 +72,13 @@ export default function List({
       </div>
       <div className="bottom">
         <div className="favorite">
-          <MdFavoriteBorder />
+          <MdFavoriteBorder
+            onClick={() => {
+              setFavorite(board_id);
+            }}
+          />
         </div>
-        <div className="createdDate">{created_at}</div>
+        <div className="createdDate">{formatDate(created_at)}</div>
       </div>
     </ListStyle>
   );
