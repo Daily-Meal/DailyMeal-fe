@@ -1,7 +1,7 @@
 import { httpClient } from "./http";
-import { WritingRequest } from "@/models/writing.model";
+import { SendWritingRequest } from "@/models/writing.model";
 
-export const createPost = async (data: WritingRequest) => {
+export const createPost = async (data: SendWritingRequest) => {
   try {
     const response = await httpClient.post("/boards", data);
     return response.data;

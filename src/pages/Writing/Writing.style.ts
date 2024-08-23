@@ -74,6 +74,7 @@ export const TitleBox = styled.div`
   span {
     font-size: 20px;
     font-weight: 700;
+    cursor: pointer;
   }
 `;
 

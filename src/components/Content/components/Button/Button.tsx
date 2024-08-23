@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import * as S from "./Button.style";
+import { useAuthStore } from "@/stores/authStore";
 
 interface ButtonProps {
   name: string;
@@ -30,11 +31,16 @@ export function FilterButton({
 
 export function CreateButton({ width, height }: Omit<ButtonProps, "name">) {
   const navigate = useNavigate();
+  const { accessToken } = useAuthStore();
 
   return (
     <S.CreateButtonStyle
       onClick={() => {
-        navigate("/writing");
+        if (accessToken) {
+          navigate("/writing");
+        } else {
+          navigate("/login");
+        }
       }}
     >
       + 게시물 작성하기
