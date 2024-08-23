@@ -32,7 +32,7 @@ export default function ListArea({ category }: ListAreaProps) {
   const [offset, setOffset] = useState(0);
   const [hasMore, setHasMore] = useState(true);
   let isFetching = false;
-  const { setDatas } = useListStore();
+  const { setDatas, setHeaderTotal, decreaseHeaderTotal } = useListStore();
 
   const { accessToken } = useAuthStore();
   const [favorites, setFavorites] = useState<string[]>([]);
@@ -74,6 +74,7 @@ export default function ListArea({ category }: ListAreaProps) {
       setBoards(prevBoards =>
         prevBoards.filter(board => board.board_id !== boardId),
       );
+      decreaseHeaderTotal();
     } catch (error) {
       console.error("게시물 삭제 오류", error);
     }
@@ -91,6 +92,7 @@ export default function ListArea({ category }: ListAreaProps) {
       };
       const responseData = await selectedApi(data);
       setDatas(responseData);
+      setHeaderTotal(responseData.pagination.total);
 
       if (accessToken) {
         // 즐겨찾기 boardId 조회
