@@ -16,6 +16,7 @@ import {
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAuthStore } from "@/stores/authStore";
 import { deletePost } from "@/api/boards.api";
+import { useListStore } from "@/stores/listStore";
 
 const ITEM_LIMIT = 8;
 
@@ -31,6 +32,7 @@ export default function ListArea({ category }: ListAreaProps) {
   const [offset, setOffset] = useState(0);
   const [hasMore, setHasMore] = useState(true);
   let isFetching = false;
+  const { setDatas } = useListStore();
 
   const { accessToken } = useAuthStore();
   const [favorites, setFavorites] = useState<string[]>([]);
@@ -88,6 +90,7 @@ export default function ListArea({ category }: ListAreaProps) {
         userId: userId.toString(),
       };
       const responseData = await selectedApi(data);
+      setDatas(responseData);
 
       if (accessToken) {
         // 즐겨찾기 boardId 조회

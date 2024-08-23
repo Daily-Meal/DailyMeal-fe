@@ -9,6 +9,7 @@ import utc from "dayjs/plugin/utc";
 import { setFavorite } from "@/api/favorites.api";
 import { useState } from "react";
 import { deletePost } from "@/api/boards.api";
+import { useListStore } from "@/stores/listStore";
 dayjs.extend(utc);
 
 interface BoardWithFavorite extends BoardInfo {
@@ -33,6 +34,7 @@ export default function List({
   const formatDate = (created_at: string) => {
     return dayjs.utc(created_at).format("YYYY-MM-DD HH:mm:ss");
   };
+  const { setFocusedUser } = useListStore();
 
   const [listFavorite, setListFavorite] = useState(isFavorite);
 
@@ -62,6 +64,7 @@ export default function List({
         <div
           className="idText"
           onClick={() => {
+            setFocusedUser(user.nickname);
             navigate(`/user/${user.user_id}`);
           }}
         >

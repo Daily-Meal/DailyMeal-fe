@@ -2,13 +2,11 @@ import { useEffect, useRef, useState } from "react";
 import { CreateButton, FilterButton } from "./components/Button";
 import { ButtonsWrapper } from "./components/Button/Button.style";
 import ListArea from "./components/ListArea";
-import { useListStore } from "@/stores/listStore";
 import MainContent from "@/layout/mainContent";
 import { Filters, RequestBoard } from "@/models/boardInfo.model";
 
 export default function Content() {
   const [selectedFilter, setSelectedFilter] = useState<Filters>("전체");
-  const { lists, setDatas } = useListStore();
 
   const handleFilterClick = (filterName: Filters) => {
     setSelectedFilter(filterName);

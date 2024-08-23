@@ -1,20 +1,22 @@
-import { BoardInfo } from "@/models/boardInfo.model";
+import { BoardsInfo } from "@/models/boardInfo.model";
 import { StateCreator, create } from "zustand";
 import { devtools } from "zustand/middleware";
 
 interface IListStore {
-  lists: BoardInfo[];
-  setDatas: (data: BoardInfo[], initialize?: boolean) => void;
+  list: BoardsInfo | null;
+  focusedUser: string | null;
+  setDatas: (data: BoardsInfo) => void;
+  setFocusedUser: (nickname: string) => void;
 }
 
 const listStore: StateCreator<IListStore> = set => ({
-  lists: [],
-  setDatas: (data: BoardInfo[], initialize?: boolean) =>
-    set(state => {
-      return {
-        lists: initialize ? data : [...state.lists, ...data],
-      };
-    }),
+  list: null,
+  focusedUser: null,
+  setDatas: (data: BoardsInfo) => set(() => ({ list: data })),
+  setFocusedUser: (nickname: string) =>
+    set(() => ({
+      focusedUser: nickname,
+    })),
 });
 
 export const useListStore = create<IListStore>()(
