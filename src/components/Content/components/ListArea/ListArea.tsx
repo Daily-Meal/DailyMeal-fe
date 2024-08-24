@@ -32,6 +32,7 @@ export default function ListArea({ category }: ListAreaProps) {
   const [offset, setOffset] = useState(0);
   const [hasMore, setHasMore] = useState(true);
   let isFetching = false;
+  const [pageLoading, setPageLoading] = useState(true);
   const { setDatas, setHeaderTotal, decreaseHeaderTotal } = useListStore();
 
   const { accessToken } = useAuthStore();
@@ -83,6 +84,7 @@ export default function ListArea({ category }: ListAreaProps) {
   const fetchData = async (isFirstFetch: boolean = false) => {
     if (isFetching) return;
     isFetching = true;
+
     try {
       const data: RequestBoard = {
         limit: ITEM_LIMIT,
@@ -120,6 +122,7 @@ export default function ListArea({ category }: ListAreaProps) {
       console.error("데이터 조회 에러", error);
     } finally {
       isFetching = false;
+      setPageLoading(false);
     }
   };
 
@@ -164,7 +167,9 @@ export default function ListArea({ category }: ListAreaProps) {
 
   return (
     <>
-      {boards.length > 0 ? (
+      {pageLoading ? (
+        <S.LoadingPageStyle>데이터 로드중...</S.LoadingPageStyle>
+      ) : boards.length > 0 ? (
         <S.ListAreaStyle>
           <div className="itemContainer">
             {boards.map(list => (
@@ -188,8 +193,7 @@ export default function ListArea({ category }: ListAreaProps) {
         <S.NoContentWrapper>
           <S.NoContentStyle />
           <S.NoContentText>
-            <p>게시물이 없습니다.</p> <br />
-            게시물을 작성해주세요.
+            <p>조회된 게시물이 없습니다.</p>
           </S.NoContentText>
         </S.NoContentWrapper>
       )}

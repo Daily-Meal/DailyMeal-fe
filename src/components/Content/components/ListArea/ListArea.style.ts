@@ -48,3 +48,9 @@ export const NoContentText = styled.div`
   text-align: center;
   color: ${({ theme }) => theme.colors.textGray};
 `;
+
+export const LoadingPageStyle = styled(ListAreaStyle)`
+  justify-content: center;
+  align-items: center;
+  font-size: 25px;
+`;
