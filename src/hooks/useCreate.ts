@@ -3,13 +3,17 @@ import { createPost, editWriting } from "@/api/boards.api";
 import { EditBoardInfo, WritingRequest } from "@/models/writing.model";
 import { useNavigate } from "react-router-dom";
 
+interface FormData extends Omit<WritingRequest, "image"> {
+  image: FileList | string;
+}
+
 export function useCreate(editBoardInfo?: EditBoardInfo) {
   const navigate = useNavigate();
   const methods = useForm<WritingRequest>({
     mode: "onTouched",
   });
 
-  const onSubmit = async (data: WritingRequest) => {
+  const onSubmit = async (data: FormData) => {
     try {
       const meals = data.meals.filter(meal => {
         return meal.trim().length > 0;
@@ -47,15 +51,18 @@ export function useCreate(editBoardInfo?: EditBoardInfo) {
         return;
       }
 
-      console.log(`
-        image: ${data.image}
-        category: ${data.category}
-        mealType: ${data.mealType}
-        meals: ${data.meals}
-        tags: ${data.tags}
-        `);
+      if (data.image instanceof FileList) {
+        data.image = "";
+      }
 
-      const response = await createPost(data);
+      const requestData = {
+        ...data,
+        meals,
+        tags,
+        image: data.image,
+      };
+
+      const response = await createPost(requestData);
       if (response) {
         alert("게시글이 등록되었습니다.");
         navigate("/");
