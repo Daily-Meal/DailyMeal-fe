@@ -1,9 +1,9 @@
 import { useForm } from "react-hook-form";
-import { createPost } from "@/api/boards.api";
-import { SendWritingRequest, WritingRequest } from "@/models/writing.model";
+import { createPost, editWriting } from "@/api/boards.api";
+import { EditBoardInfo, WritingRequest } from "@/models/writing.model";
 import { useNavigate } from "react-router-dom";
 
-export function useCreate() {
+export function useCreate(editBoardInfo?: EditBoardInfo) {
   const navigate = useNavigate();
   const methods = useForm<WritingRequest>({
     mode: "onTouched",
@@ -12,7 +12,7 @@ export function useCreate() {
   const onSubmit = async (data: WritingRequest) => {
     try {
       const meals = data.meals.filter(meal => {
-        return meal.trim() !== "";
+        return meal.trim().length > 0;
       });
 
       if (meals.length === 0) {
@@ -29,32 +29,33 @@ export function useCreate() {
       }
 
       const tags = data.tags.filter(tag => {
-        return tag.trim() !== "";
+        return tag.trim().length > 0;
       });
       if (tags.length === 0) {
         alert("1개 이상의 태그를 입력해주세요.");
         return;
       }
 
-      let requestData: SendWritingRequest;
-      if (data.image && data.image.length > 0) {
-        const file = data.image[0];
-        const base64Img = await toBase64(file);
-
-        requestData = {
-          ...data,
-          meals,
-          image: base64Img,
-        };
-      } else {
-        requestData = {
-          ...data,
-          meals,
-          image: "",
-        };
+      if (editBoardInfo) {
+        const response = await editWriting(editBoardInfo);
+        if (response) {
+          alert("게시글이 수정되었습니다.");
+          navigate("/");
+        } else {
+          console.log(`서버 응답 : ${response}`);
+        }
+        return;
       }
 
-      const response = await createPost(requestData);
+      console.log(`
+        image: ${data.image}
+        category: ${data.category}
+        mealType: ${data.mealType}
+        meals: ${data.meals}
+        tags: ${data.tags}
+        `);
+
+      const response = await createPost(data);
       if (response) {
         alert("게시글이 등록되었습니다.");
         navigate("/");

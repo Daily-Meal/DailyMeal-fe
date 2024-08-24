@@ -86,3 +86,13 @@ export const TagForm = styled.form`
   gap: 8px;
   ${scrollMixins.customScrollbar()}
 `;
+
+export const Preview = styled.div`
+  margin-top: 15px;
+  border: 1px solid black;
+  img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+`;

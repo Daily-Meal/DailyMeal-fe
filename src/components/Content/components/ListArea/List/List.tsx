@@ -8,7 +8,6 @@ import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import { setFavorite } from "@/api/favorites.api";
 import { useState } from "react";
-import { deletePost } from "@/api/boards.api";
 import { useListStore } from "@/stores/listStore";
 dayjs.extend(utc);
 
@@ -72,7 +71,23 @@ export default function List({
         </div>
         {currentPath === "/mypage" ? (
           <div className="mypageArea">
-            <div className="edit">
+            <div
+              className="edit"
+              onClick={() => {
+                navigate("/writing", {
+                  state: {
+                    boardInfo: {
+                      board_id,
+                      image,
+                      category,
+                      meal_type,
+                      meals,
+                      tags,
+                    },
+                  },
+                });
+              }}
+            >
               <MdModeEdit className="editIcon" />
               수정
             </div>

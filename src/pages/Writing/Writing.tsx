@@ -3,14 +3,32 @@ import Button from "@/components/Button";
 import Icon from "@/components/Icon";
 import { useCreate } from "@/hooks/useCreate";
 import * as S from "./Writing.style";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { ChangeEvent, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { EditBoardInfo } from "@/models/writing.model";
 
 export default function Writing() {
   const navigate = useNavigate();
-  const { register, onSubmit } = useCreate();
+  const location = useLocation();
+  const [imagePreview, setImagePreview] = useState<string>("");
+  const editBoardInfo = location.state?.boardInfo as EditBoardInfo;
+
+  const { register, onSubmit, setValue } = useCreate(editBoardInfo);
   const [addedDietCount, setAddedDietCount] = useState<number[]>([1]);
   const [addedTagCount, setAddedTagCount] = useState<number[]>([1]);
+
+  const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onloadend = () => {
+        const base64String = reader.result as string;
+        setImagePreview(base64String);
+        setValue("image", base64String);
+      };
+    }
+  };
 
   return (
     <S.WritingStyle>
@@ -56,13 +74,20 @@ export default function Writing() {
             <label>사진 업로드</label>
             <S.UpLoadBox>
               <label htmlFor="upload">
-                <Icon name="upload" />
+                {imagePreview ? (
+                  <S.Preview>
+                    <img src={imagePreview as string} alt="미리보기" />
+                  </S.Preview>
+                ) : (
+                  <Icon name="upload" />
+                )}
               </label>
               <S.Upload
                 type="file"
                 id="upload"
                 {...register("image")}
                 accept="image/*"
+                onChange={handleFileChange}
               />
             </S.UpLoadBox>
           </S.UploadContainer>
