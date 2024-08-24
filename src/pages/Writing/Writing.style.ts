@@ -74,6 +74,7 @@ export const TitleBox = styled.div`
   span {
     font-size: 20px;
     font-weight: 700;
+    cursor: pointer;
   }
 `;
 
@@ -84,4 +85,14 @@ export const TagForm = styled.form`
   padding-right: 8px;
   gap: 8px;
   ${scrollMixins.customScrollbar()}
+`;
+
+export const Preview = styled.div`
+  width: 100%;
+  height: 279px;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
 `;

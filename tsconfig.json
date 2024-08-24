@@ -3,6 +3,7 @@
     "strict": true,
     "esModuleInterop": true,
     "types": ["styled-components"],
+    "allowSyntheticDefaultImports": true,
     "typeRoots": ["./@types", "./node_modules/@types"],
     "jsx": "react-jsx",
     /* path */

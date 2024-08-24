@@ -69,14 +69,13 @@ export const ListStyle = styled.div`
   .typeArea {
     display: flex;
     flex-grow: 1;
-    justify-content: space-between;
     align-items: center;
     font-size: 15px;
   }
 
   .typeArea .mealType {
     white-space: nowrap;
-    margin: 0px 10px 5px 10px;
+    margin: 0px 10px 10px 10px;
     background-color: white;
     padding: 15px;
     text-align: center;
@@ -101,7 +100,7 @@ export const ListStyle = styled.div`
   }
 
   .tagArea .tagBox {
-    margin: 0px 0px 5px 10px;
+    margin: 0px 10px 10px 10px;
     background-color: white;
     padding: 10px;
     text-align: center;
@@ -180,11 +179,10 @@ export const ListStyle = styled.div`
   }
 
   .bottom .filledFavorite {
-    margin-left: ${({ theme }) => theme.margin.LIST_BOTTOM_MARGIN};
     color: red;
   }
   .bottom .createdDate {
-    font-size: 20px;
+    font-size: 13px;
     margin-right: ${({ theme }) => theme.margin.LIST_BOTTOM_MARGIN};
   }
 `;

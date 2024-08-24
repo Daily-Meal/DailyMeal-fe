@@ -8,6 +8,9 @@ import activeProfile from "@/assets/white-profile.svg";
 import activeFavorite from "@/assets/white-favorite.svg";
 import upload from "@/assets/upload.svg";
 import square from "@/assets/square.svg";
+import mypage from "@/assets/mypage.svg";
+import activeMypage from "@/assets/white-mypage.svg";
+
 interface IconList {
   [key: string]: string;
   logoLetter: string;
@@ -15,9 +18,11 @@ interface IconList {
   favorite: string;
   home: string;
   profile: string;
+  mypage: string;
   activeDoor: string;
   activeProfile: string;
   activeFavorite: string;
+  activeMypage: string;
   upload: string;
   square: string;
 }
@@ -28,9 +33,11 @@ export const iconList: IconList = {
   favorite,
   home,
   profile,
+  mypage,
   activeDoor,
   activeFavorite,
   activeProfile,
+  activeMypage,
   upload,
   square,
 };

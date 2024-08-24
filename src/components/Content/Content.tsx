@@ -1,20 +1,12 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { CreateButton, FilterButton } from "./components/Button";
 import { ButtonsWrapper } from "./components/Button/Button.style";
 import ListArea from "./components/ListArea";
-import { useListStore } from "@/stores/listStore";
 import MainContent from "@/layout/mainContent";
-import { useLocation } from "react-router-dom";
+import { Filters, RequestBoard } from "@/models/boardInfo.model";
 
 export default function Content() {
   const [selectedFilter, setSelectedFilter] = useState<Filters>("전체");
-  const { lists, setDatas } = useListStore();
-
-  // 백엔드 - 조회 API 추가 예정.
-  // 1. 메인페이지 / 2. mypage / 3. 유저ID 별 조회API
-  useEffect(() => {
-    setDatas(TEST_DIET_DATA, true);
-  }, [setDatas]);
 
   const handleFilterClick = (filterName: Filters) => {
     setSelectedFilter(filterName);
@@ -39,12 +31,10 @@ export default function Content() {
           <CreateButton />
         </div>
       </ButtonsWrapper>
-      <ListArea />
+      <ListArea key={selectedFilter} category={selectedFilter} />
     </MainContent>
   );
 }
-
-type Filters = "전체" | "아침" | "점심" | "저녁";
 
 const FILTERS = [
   {
@@ -62,53 +52,5 @@ const FILTERS = [
   {
     id: 4,
     name: "저녁",
-  },
-];
-
-const TEST_DIET_DATA = [
-  {
-    id: "1",
-    created_at: "1011-01-01",
-    user_id: "user_id1",
-    category: "아침",
-    meal_type: "중식",
-    food_name: ["음식1", "음식2", "음식3", "음식4", "음식5", "음식6"],
-    tag_name: ["태그1", "태그2", "태그3"],
-  },
-  {
-    id: "2",
-    created_at: "2022-02-02",
-    user_id: "user_id2",
-    category: "점심",
-    meal_type: "한식",
-    food_name: ["음식1", "음식2", "음식3"],
-    tag_name: ["태그1", "태그2", "태그3"],
-  },
-  {
-    id: "3",
-    created_at: "3033-03-03",
-    user_id: "user_id3",
-    category: "저녁",
-    meal_type: "일식",
-    food_name: ["음식1", "음식2", "음식3"],
-    tag_name: ["태그1", "태그2", "태그3"],
-  },
-  {
-    id: "4",
-    created_at: "4044-04-04",
-    user_id: "user_id4",
-    category: "아침",
-    meal_type: "기타",
-    food_name: ["음식1", "음식2", "음식3"],
-    tag_name: ["태그1", "태그2", "태그3"],
-  },
-  {
-    id: "5",
-    created_at: "5055-05-05",
-    user_id: "user_id5",
-    category: "점심",
-    meal_type: "양식",
-    food_name: ["음식1", "음식2", "음식3"],
-    tag_name: ["태그1", "태그2", "태그3", "태그4", "태그5"],
   },
 ];

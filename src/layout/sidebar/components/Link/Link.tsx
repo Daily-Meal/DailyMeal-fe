@@ -1,19 +1,37 @@
-import { Link as RouterLink, useLocation } from "react-router-dom";
+import { Link as RouterLink, useLocation, useNavigate } from "react-router-dom";
 import Icon from "@/components/Icon";
 import * as S from "./Link.style";
-
+import { useAuthStore } from "@/stores/authStore";
+import { logoutUser } from "@/api/auth.api";
 interface ILinkItemProps {
   to: string;
   name: string;
   title: string;
   className?: string;
   active: boolean;
+  clickAction?: () => void;
 }
 
-const LinkItem = ({ to, name, title, className, active }: ILinkItemProps) => (
-  <RouterLink to={to} className={`item ${className} ${active ? "active" : ""}`}>
+const LinkItem = ({
+  to,
+  name,
+  title,
+  className,
+  active,
+  clickAction,
+}: ILinkItemProps) => (
+  <RouterLink
+    to={to}
+    className={`item ${className} ${active ? "active" : ""}`}
+    onClick={e => {
+      if (clickAction) {
+        e.preventDefault();
+        clickAction();
+      }
+    }}
+  >
     <li>
-      <Icon name={name} />
+      <Icon name={name} clickAction={clickAction} />
       <span className="linkName">{title}</span>
     </li>
   </RouterLink>
@@ -21,6 +39,9 @@ const LinkItem = ({ to, name, title, className, active }: ILinkItemProps) => (
 
 export default function Link() {
   const location = useLocation();
+  const navigate = useNavigate();
+  const { accessToken, setAccessToken } = useAuthStore();
+
   return (
     <S.LinkStyle>
       <S.LinkBox>
@@ -38,13 +59,26 @@ export default function Link() {
             );
           })}
         </div>
-        <LinkItem
-          to="/login"
-          name={location.pathname === "/login" ? "activeDoor" : "door"}
-          title="로그인"
-          className="logout"
-          active={location.pathname === "/login"}
-        />
+        {accessToken ? (
+          <LinkItem
+            to="/"
+            name={location.pathname === "/login" ? "activeDoor" : "door"}
+            title="로그아웃"
+            className="logout"
+            active={location.pathname === "/login"}
+            clickAction={() => {
+              logoutUser();
+            }}
+          />
+        ) : (
+          <LinkItem
+            to="/login"
+            name={location.pathname === "/login" ? "activeDoor" : "door"}
+            title="로그인"
+            className="logout"
+            active={location.pathname === "/login"}
+          />
+        )}
       </S.LinkBox>
     </S.LinkStyle>
   );

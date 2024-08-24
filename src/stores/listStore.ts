@@ -1,27 +1,33 @@
+import { BoardsInfo } from "@/models/boardInfo.model";
 import { StateCreator, create } from "zustand";
 import { devtools } from "zustand/middleware";
 
-export interface IList {
-  id: string;
-  url?: string | undefined;
-  created_at: string;
-  user_id: string;
-  category: string;
-  meal_type: string;
-  food_name: string[];
-  tag_name: string[];
-}
-
 interface IListStore {
-  lists: IList[];
-  setDatas: (data: IList[], initialize?: boolean) => void;
+  boardsInfo: BoardsInfo | null;
+  focusedUser: string | null;
+  headerTotal: number | null;
+  setDatas: (data: BoardsInfo) => void;
+  setFocusedUser: (nickname: string) => void;
+  setHeaderTotal: (headerTotal: number) => void;
+  decreaseHeaderTotal: () => void;
 }
 
 const listStore: StateCreator<IListStore> = set => ({
-  lists: [],
-  setDatas: (data: IList[], initialize?: boolean) =>
+  boardsInfo: null,
+  focusedUser: null,
+  headerTotal: null,
+  setDatas: (data: BoardsInfo) => set(() => ({ boardsInfo: data })),
+  setFocusedUser: (nickname: string) =>
+    set(() => ({
+      focusedUser: nickname,
+    })),
+  setHeaderTotal: (headerTotal: number) =>
+    set(() => ({
+      headerTotal,
+    })),
+  decreaseHeaderTotal: () =>
     set(state => ({
-      lists: initialize ? data : [...state.lists, ...data],
+      headerTotal: state.headerTotal !== null ? state.headerTotal - 1 : null,
     })),
 });
 

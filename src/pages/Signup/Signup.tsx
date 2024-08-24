@@ -20,7 +20,8 @@ export default function Signup() {
     console.log("Signup Data:", data);
   };
 
-  const checkEmail = async () => {
+  const checkEmail = async (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
     const email = methods.getValues("email");
     if (email) {
       try {
@@ -37,7 +38,9 @@ export default function Signup() {
     }
   };
 
-  const checkNickname = async () => {
+  const checkNickname = async (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+
     const nickname = methods.getValues("nickname");
     if (nickname) {
       try {
@@ -69,6 +72,7 @@ export default function Signup() {
 
           <Button
             title="중복확인"
+            type="button"
             width="60px"
             height="30px"
             onClick={checkEmail}
@@ -86,6 +90,7 @@ export default function Signup() {
 
           <Button
             title="중복확인"
+            type="button"
             width="60px"
             height="30px"
             onClick={checkNickname}

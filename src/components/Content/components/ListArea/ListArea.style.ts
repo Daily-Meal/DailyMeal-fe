@@ -3,20 +3,28 @@ import { PiListPlusFill } from "react-icons/pi";
 import { scrollMixins } from "@/styles/mixins";
 
 export const ListAreaStyle = styled.div`
-  ${scrollMixins.customScrollbar()}
-
   background-color: white;
   border-radius: 15px;
   flex-grow: 1;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  gap: 30px;
-  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  max-height: 80vh;
 
-  align-items: center;
-  justify-items: center;
-  overflow: auto;
+  .itemContainer {
+    ${scrollMixins.customScrollbar()}
+
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 80px;
+    padding: 10px;
+
+    align-items: center;
+    justify-items: center;
+    overflow: auto;
+  }
 `;
 
 export const NoContentWrapper = styled.div`
@@ -39,4 +47,10 @@ export const NoContentText = styled.div`
   font-size: 20px;
   text-align: center;
   color: ${({ theme }) => theme.colors.textGray};
+`;
+
+export const LoadingPageStyle = styled(ListAreaStyle)`
+  justify-content: center;
+  align-items: center;
+  font-size: 25px;
 `;
