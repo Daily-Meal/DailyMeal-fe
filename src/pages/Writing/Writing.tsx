@@ -45,7 +45,7 @@ export default function Writing() {
         </S.TitleBox>
         <S.ContentContainer>
           <S.DietForm onSubmit={onSubmit}>
-            <label htmlFor="meals[0]">식단</label>
+            <label>식단</label>
             {addedDietCount.map((_, index) => {
               return (
                 <InputBox
@@ -59,7 +59,7 @@ export default function Writing() {
             })}
 
             <Button
-              title="+ 새로운 음식 추가 버튼"
+              title="+ 새로운 음식 추가"
               width="100%"
               backgroundColor="#e8f4d4"
               color="black"
@@ -126,7 +126,7 @@ export default function Writing() {
             })}
 
             <Button
-              title="+ 태그추가"
+              title="+ 태그 추가"
               width="100%"
               backgroundColor="#e8f4d4"
               color="black"

@@ -88,11 +88,11 @@ export const TagForm = styled.form`
 `;
 
 export const Preview = styled.div`
-  margin-top: 15px;
-  border: 1px solid black;
+  width: 100%;
+  height: 279px;
   img {
     width: 100%;
-    height: auto;
+    height: 100%;
     object-fit: contain;
   }
 `;
