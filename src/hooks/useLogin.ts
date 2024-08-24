@@ -22,9 +22,8 @@ export const useLogin = () => {
       setAccessToken(accessToken);
       setRefreshToken(refreshToken);
 
-      // 백엔드 nickname, email전달시
-      // setNickname(response.nickname);
-      // setEmail(response.email);
+      setNickname(response.nickname);
+      setEmail(response.email);
 
       navigate("/");
     } catch (err: any) {

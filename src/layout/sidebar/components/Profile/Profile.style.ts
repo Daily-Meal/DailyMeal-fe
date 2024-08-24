@@ -24,5 +24,10 @@ export const ProfileStyle = styled.div`
       color: ${({ theme }) => theme.colors.lightGray};
       font-size: 14px;
     }
+
+    .non-member {
+      font-size: 14px;
+      line-height: 150%;
+    }
   }
 `;
