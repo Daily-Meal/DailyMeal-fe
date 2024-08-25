@@ -71,9 +71,9 @@ export default function Signup() {
           />
 
           <Button
-            title="중복확인"
+            title="중복 확인"
             type="button"
-            width="60px"
+            width="70px"
             height="30px"
             onClick={checkEmail}
           />
@@ -89,9 +89,9 @@ export default function Signup() {
           />
 
           <Button
-            title="중복확인"
+            title="중복 확인"
             type="button"
-            width="60px"
+            width="70px"
             height="30px"
             onClick={checkNickname}
           />
